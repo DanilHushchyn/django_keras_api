@@ -1,31 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import UploadFileForm
 
+from keras_model.predict import predict
 
-from ./predict import predict
-
-import time
+def index(request):
+    return render(request, "keras_model/index.html")
 
 # Create your views here.
-def uploadfile_server(request):
+def predict_Image(request):
     if request.method == "POST":
-        f = request.FILES.get('personico')
-        baseDir = os.path.dirname(os.path.abspath(__name__))
-        jpgdir = os.path.join(baseDir, 'static', 'jpg')
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            image=request.POST.get['image']
+            result = predict(image.url)
 
-        filename = os.path.join(jpgdir, f.name)
-        fobj = open(filename, 'wb')
-        for chrunk in f.chunks():
-            fobj.write(chrunk)
-        fobj.close()
-
-
-        #Inference Part
-        start = time.monotonic()
-        result = predict(filename)
-        time_taken = time.monotonic() - start
-        resp = {'result': result, 'time': time_taken}
-        return HttpResponse(json.dumps(resp), content_type="application/json")
+        resp = {'data': image, 'result': result}
+        return render(request, "keras_model/result.html", resp)
 
     else:
-        return render_to_response('uploadfile.html')
+        return render(request, "keras_model/index.html")
