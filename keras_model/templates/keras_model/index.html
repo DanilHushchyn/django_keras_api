@@ -9,7 +9,7 @@
 <h1>Using Resnet50 to Predict images </h1>
 <div>Please upload an image</div>
 <div class="form">
-    <form action= "{% url 'image' %}" method="POST" enctype="multipart/form-data">
+    <form action= "{% url 'keras_model:image' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input name="image" type="file" placeholder = "Please upload images"><br>
         <button type="submit" style = '...' value="Upload">upload</button>
