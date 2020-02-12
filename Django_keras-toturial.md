@@ -128,7 +128,7 @@ urlpatterns = [
 ]
 ```
 
-### write two html
+### step7.write two html
 under keras_model/templates/keras_model
 i. index.html
 ```
