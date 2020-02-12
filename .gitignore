@@ -3,4 +3,5 @@ __pycache__/
 .idea
 keras_model/__pycache__
 django_api/__pycache__
-
+keras_model/statc/media/*
+!keras_model/statc/media/temp.png
