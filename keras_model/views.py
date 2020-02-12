@@ -8,7 +8,7 @@ def index(request):
     return render(request, "keras_model/index.html")
 
 def save_uploaded_image(f,name):
-    with open("static/media/"+ name, "wb+") as destination:
+    with open("keras_model/static/media/"+ "temp.png", "wb+") as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -20,10 +20,10 @@ def predict_Image(request):
             image=request.FILES['image']
             save_uploaded_image(image, image._name)
 
-            result = predict("static/media/"+ image._name)[0][1]
+            result = predict("keras_model/static/media/"+ "temp.png")[0][1]
 
 
-            resp = {'data':image._name , 'result': result}
+            resp = {'data':"http://127.0.0.1:8000/static/media/"+ image._name , 'result': result}
             return render(request, "keras_model/result.html", resp)
 
     else:

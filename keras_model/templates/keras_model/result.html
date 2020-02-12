@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 <body>
 <h1>Keras Model Prediction results</h1>
 <h2>The prediction results is: {{ result }}</h2>
-<img src = "/static/media/{{data}}">
+<img src = {% static "media/temp.png" %}  width="500px">
 {#{% load static %}#}
 {#<script type="text/javascript">#}
 {#    var url = "{{ data }}";#}
