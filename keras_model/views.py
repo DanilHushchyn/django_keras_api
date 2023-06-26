@@ -1,7 +1,8 @@
+
 from django.shortcuts import render
 from .forms import UploadFileForm
+from .predict import predict
 
-from keras_model.predict import predict
 
 def index(request):
     return render(request, "keras_model/index.html")

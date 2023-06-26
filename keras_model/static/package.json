@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@upload-io/jquery-uploader": "^3.5.1",
+    "jquery": "^3.6.3"
+  }
+}
